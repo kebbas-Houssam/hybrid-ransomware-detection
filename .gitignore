@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Logs
+*.log
+logs/
+
+# Datasets (see data/README.md)
+data/*.csv
+data/**/*.csv
+
+# Training outputs (written by training/train.py)
+outputs/
+
+# Simulator sandbox
+simulation_files/
+**/simulation_files/
+
+# Temporary clone folder used during the repo merge
+_src/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
