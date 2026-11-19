@@ -185,3 +185,31 @@ def extract_hybrid_features(X_sequences, y_pred_proba_primary, verbose=True):
         print(f"Error extracting hybrid features: {e}")
         traceback.print_exc()
         raise
+
+
+def pad_sequence(windows, sequence_length=50):
+    """Inference helper: turn ``(n, 13)`` windows into one ``(sequence_length, 13)`` sequence.
+
+    Keeps the most recent ``sequence_length`` windows; if fewer are available the
+    first window is repeated at the front (used for short CSVs and live traces,
+    where 50 consecutive 5 s windows are not yet available).
+    """
+    windows = np.asarray(windows, dtype=np.float32)
+    if windows.ndim == 1:
+        windows = windows.reshape(1, -1)
+    windows = windows[-sequence_length:]
+    if len(windows) < sequence_length:
+        pad = np.repeat(windows[:1], sequence_length - len(windows), axis=0)
+        windows = np.concatenate([pad, windows], axis=0)
+    return windows
+
+
+def clean_windows(features):
+    """Same cleaning as :func:`prepare_data`: NaN -> 0 and clip to +/-1e10."""
+    features = np.nan_to_num(np.asarray(features, dtype=np.float64), nan=0.0)
+    return np.clip(features, -1e10, 1e10)
+
+
+def scale_with(scaler, X):
+    """Apply a fitted per-feature scaler to ``(n, T, F)`` sequences."""
+    return scaler.transform(X.reshape(-1, X.shape[-1])).reshape(X.shape)
