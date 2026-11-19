@@ -137,9 +137,11 @@ score and the final label.
 uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-- Dashboard: <http://127.0.0.1:8000/dashboard>
-- API docs (Swagger): <http://127.0.0.1:8000/docs>
+- Dashboard: `http://127.0.0.1:8000/dashboard`
+- API docs (Swagger): `http://127.0.0.1:8000/docs`
 - WebSocket: `ws://127.0.0.1:8000/ws`
+
+![Dashboard](results/figures/dashboard_new.png)
 
 Main endpoints:
 
