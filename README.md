@@ -153,7 +153,6 @@ Main endpoints:
 | POST | `/api/predict` | Score one set of 13 features |
 | POST | `/api/predict/trace` | Score a batch of raw file operations of one process |
 | GET | `/api/detections`, `/api/processes` | Recent detections, monitored processes |
-| GET | `/api/model-status`, `/api/list-model-files`, `/api/debug-load-test` | Diagnostics |
 
 The built-in loop only sees per-process I/O counters from `psutil`, so it synthesizes
 file events from them. Real file events come from the monitor:
@@ -182,7 +181,7 @@ Matplotlib/Seaborn · FastAPI · Uvicorn · WebSockets · psutil · watchdog · 
 
 **Mohammed Houssameddine Kebbas**, ESI Sidi Bel Abbès.
 Supervisors: **Dr M. S. Bendella** and **Dr H. Bensenane**.
-Contact: mh.kebbas@esi-sba.dz
+Contact: mohammed.kebbas@etu.umontpellier.fr
 
 ## License
 
