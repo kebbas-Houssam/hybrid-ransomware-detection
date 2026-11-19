@@ -1,0 +1,32 @@
+# Training configuration — defaults are the values used to train the
+# published model (originally hard-coded in newTraining.py).
+
+data:
+  csv_path: data/full_dataset_5s.csv   # 13 features per 5 s window, see data/README.md
+  sequence_length: 50                  # windows per sequence
+  overlap: 0.7                         # sliding-window overlap between sequences
+
+split:
+  test_size: 0.2                       # 20 % test
+  val_size: 0.25                       # 25 % of the remaining 80 % -> 20 % validation
+  random_state: 42
+
+model:                                 # CNN-LSTM-Attention (stage 1)
+  n_features: 13
+  lstm_units: 128
+  cnn_filters: 64
+  attention_dim: 64
+  dropout_rate: 0.3
+
+training:
+  learning_rate: 0.001
+  epochs: 100                          # early stopping on val_f2_score (patience 15)
+  batch_size: 16
+
+pso:                                   # PSO search over XGBoost hyperparameters (stage 2)
+  particles: 20
+  iterations: 30
+
+output:
+  dir: outputs                         # checkpoints, figures, report, saved artifacts
+  base_name: pso_ransomware_model
