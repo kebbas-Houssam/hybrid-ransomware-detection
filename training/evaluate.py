@@ -380,30 +380,6 @@ def plot_pso_evaluation_results(model_system, y_true, y_pred_primary, y_pred_hyb
         except Exception as e:
             plt.text(0.5, 0.5, f'FP Analysis\nError: {str(e)[:30]}', ha='center', va='center')
 
-        # PSO vs Random Search Comparison (Simulation)
-        plt.subplot(4, 5, 9)
-        try:
-            # Simulate random search convergence for comparison
-            pso_scores = [1 - f for f in model_system.pso_history] if model_system.pso_history else []
-            if pso_scores:
-                # Simulate random search (typically slower convergence)
-                n_iter = len(pso_scores)
-                random_scores = [pso_scores[0] + (pso_scores[-1] - pso_scores[0]) *
-                               (1 - np.exp(-i/n_iter * 2)) + np.random.normal(0, 0.01)
-                               for i in range(n_iter)]
-
-                plt.plot(pso_scores, 'g-', linewidth=2, label='PSO Optimization', marker='o', markersize=3)
-                plt.plot(random_scores, 'r--', linewidth=2, label='Random Search (simulated, not measured)', alpha=0.7)
-                plt.xlabel('Iteration')
-                plt.ylabel('Best Score')
-                plt.title('PSO vs Random Search (simulated)\nConvergence Comparison')
-                plt.legend()
-                plt.grid(True, alpha=0.3)
-            else:
-                plt.text(0.5, 0.5, 'PSO Comparison\nData Not Available', ha='center', va='center')
-        except Exception as e:
-            plt.text(0.5, 0.5, f'PSO Comparison\nError: {str(e)[:30]}', ha='center', va='center')
-
         # Feature Importance from XGBoost
         plt.subplot(4, 5, 10)
         try:
