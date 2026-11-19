@@ -28,3 +28,6 @@ _src/
 .DS_Store
 .idea/
 .vscode/
+
+# Thesis and other private documents
+docs/*.pdf

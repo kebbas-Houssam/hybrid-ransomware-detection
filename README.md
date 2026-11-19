@@ -53,16 +53,22 @@ flowchart LR
 
 ## Results
 
-Evaluated on two heterogeneous datasets, **DeftPunk** (imbalanced) and **RansMap2024** (balanced):
+PSO-optimized hybrid model, 5-second windows, sequences of 50 (thesis Tables 6.8 and 6.9):
 
-| Metric | Score |
-|---|---|
-| Recall | **93.49 %** |
-| F2-score | **90.50 %** |
-| Accuracy | 84.83 % |
+| Dataset | Accuracy | Precision | Recall | F2-score | AUC |
+|---|---|---|---|---|---|
+| DeftPunk (cloud, ~7 % ransomware) | 92.87 % | 70.75 % | 77.41 % | 75.97 % | 95.95 % |
+| RansMap2024 (PC, ~52.4 % ransomware) | 84.83 % | 80.22 % | **93.49 %** | **90.50 %** | 94.60 % |
 
-The hybrid model generalizes better than single-model baselines and gives a better
-detection / false-alarm trade-off. Figures from the training run belong in [results/](results/).
+On both datasets the hybrid model beats the CNN-LSTM baseline on every metric. On DeftPunk,
+precision goes from 36.17 % to 70.75 % without losing recall.
+
+![ROC and precision-recall curves, baseline vs. PSO-optimized hybrid (DeftPunk)](results/figures/roc_pr_final.png)
+
+![Confusion matrices before and after PSO optimization (DeftPunk)](results/figures/confusion_before_after_pso.png)
+
+The full experimental journey, the RansMap2024 figures and the state-of-the-art comparison are in
+[results/README.md](results/README.md).
 
 ## Repository structure
 
