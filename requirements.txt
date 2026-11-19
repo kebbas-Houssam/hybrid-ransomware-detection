@@ -1,0 +1,30 @@
+# Python 3.10 (TensorFlow 2.10 supports <=3.10; the scalers need scikit-learn 1.7 -> >=3.10)
+# Versions match the saved artifacts in models/:
+#   .h5  -> Keras/TensorFlow 2.10   |   scalers -> scikit-learn 1.7.0   |   XGBoost model -> 3.0.2
+
+# --- Model / training ---
+tensorflow==2.10.1 ; sys_platform != "darwin"
+tensorflow-macos==2.10.0 ; sys_platform == "darwin"   # Apple Silicon; needs `brew install libomp` for XGBoost
+numpy==1.23.5
+scikit-learn==1.7.0
+xgboost==3.0.2
+scipy==1.11.4
+pandas==2.0.3
+h5py==3.11.0
+joblib==1.4.2
+protobuf==3.19.6
+matplotlib==3.7.5
+seaborn==0.12.2
+pyyaml==6.0.2
+
+# --- API (app/) ---
+fastapi==0.110.3
+uvicorn==0.29.0
+websockets==12.0
+pydantic==2.7.4
+psutil==5.9.8
+
+# --- Monitor / simulation ---
+requests==2.32.3
+watchdog==4.0.1
+pywin32==306 ; sys_platform == "win32"
